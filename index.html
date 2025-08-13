@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Controle da Caixa de Som</title>
+<link rel="manifest" href="manifest.json">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #3c3c5c);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  h1 {
+    margin-bottom: 20px;
+  }
+  .container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  button {
+    background: #4cafef;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.2s;
+  }
+  button:hover {
+    background: #379cd8;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  input[type=range] {
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+  <h1>Controle da Caixa de Som Bluetooth</h1>
+  <div class="container">
+    <button id="powerBtn">🔌 Ligar/Desligar</button>
+    <button id="pairBtn">🔗 Parear</button>
+
+    <div class="controls">
+      <button id="prevBtn">⏮️</button>
+      <button id="playPauseBtn">▶️ / ⏸️</button>
+      <button id="nextBtn">⏭️</button>
+    </div>
+
+    <label for="volume">🔊 Volume</label>
+    <input type="range" id="volume" min="0" max="100" value="50">
+  </div>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+
+  const powerBtn = document.getElementById('powerBtn');
+  const pairBtn = document.getElementById('pairBtn');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const volumeSlider = document.getElementById('volume');
+
+  powerBtn.addEventListener('click', () => {
+    alert('Caixa de som ligada/desligada.');
+  });
+
+  pairBtn.addEventListener('click', () => {
+    alert('Iniciando pareamento Bluetooth...');
+  });
+
+  playPauseBtn.addEventListener('click', () => {
+    alert('Tocar/Pausar música.');
+  });
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    alert('Música anterior.');
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    alert('Próxima música.');
+  });
+
+  volumeSlider.addEventListener('input', (e) => {
+    alert(`Volume ajustado para ${e.target.value}%`);
+  });
+</script>
+</body>
+</html>
